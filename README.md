@@ -15,19 +15,19 @@ Bu proje, küçük restoranlar veya kafeler için basit bir **adisyon takip ve s
 ## 🖼️ Görseller
 
 ### Menü Oluşturma
-![Menü Oluştur](Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-05-21%20000432.png)
+![Menü Oluştur](images/Ekran-goruntusu-2025-05-21-000432.png)
 
 ### Giriş Sayfası
-![Ana Sayfa](Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-05-21%20000444.png)
+![Ana Sayfa](images/Ekran-goruntusu-2025-05-21-000444.png)
 
 ### Ürün Seçme
-![Ürün Seç](Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-05-21%20000510.png)
+![Ürün Seç](images/Ekran-goruntusu-2025-05-21-000510.png)
 
 ### Adisyon Detay
-![Adisyon Detay](Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-05-21%20000520.png)
+![Adisyon Detay](images/Ekran-goruntusu-2025-05-21-000520.png)
 
 ### Aktif Siparişler
-![Aktif Siparişler](Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-05-21%20000529.png)
+![Aktif Siparişler](images/Ekran-goruntusu-2025-05-21-000529.png)
 
 ## 🛠️ Kullanılan Teknolojiler
 
@@ -50,7 +50,8 @@ adisyon-olusturucu/
 ├── bills.js
 ├── active-orders.js
 ├── historyTracker.js
-└── README.md
+├── README.md
+└── images/
 ```
 
 ## 🧑‍💻 Geliştirici
