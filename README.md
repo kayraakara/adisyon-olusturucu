@@ -10,17 +10,24 @@ Bu proje, küçük restoranlar veya kafeler için basit bir **adisyon takip ve s
 - Ürün miktarı artırma/azaltma
 - Adisyonlara ürün ekleyip silme
 - Sipariş toplam tutarını gösterme
-- PDF olarak adisyon indirme
 - Tüm veriler `localStorage` üzerinden saklanır (veri kaybolmaz)
 
-## 🖥️ Kullanım
+## 🖼️ Görseller
 
-1. Projeyi indir veya klonla:
-   ```bash
-   git clone https://github.com/kayraakara/adisyon-olusturucu.git
-   ```
+### Menü Oluşturma
+![Menü Oluştur](Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-05-21%20000432.png)
 
-2. `index.html` dosyasını tarayıcıda aç.
+### Giriş Sayfası
+![Ana Sayfa](Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-05-21%20000444.png)
+
+### Ürün Seçme
+![Ürün Seç](Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-05-21%20000510.png)
+
+### Adisyon Detay
+![Adisyon Detay](Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-05-21%20000520.png)
+
+### Aktif Siparişler
+![Aktif Siparişler](Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-05-21%20000529.png)
 
 ## 🛠️ Kullanılan Teknolojiler
 
@@ -28,7 +35,6 @@ Bu proje, küçük restoranlar veya kafeler için basit bir **adisyon takip ve s
 - CSS3
 - JavaScript (Vanilla JS)
 - localStorage API
-- jsPDF (PDF çıktısı için)
 
 ## 📁 Dosya Yapısı
 
