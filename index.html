@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Adisyon Sistemi</title>
+<link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+<button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+<div class="app">
+<aside class="sidebar" id="sidebar">
+<div class="sidebar-header">
+<h2>Adisyon Oluşturucu</h2>
+</div>
+<nav class="nav-links">
+<ul>
+<li><a href="menu.html">🍽️ Menü Oluştur</a></li>
+<li><a href="bills.html">🧾 Adisyonlar</a></li>
+<li><a href="active-orders.html">⌛ Aktif Siparişler</a></li>
+
+</ul>
+</nav>
+
+<button class="back-button" onclick="goBack()">←</button></aside>
+<main class="content">
+<h1>Adisyon Sistemi</h1>
+<p>Hoş geldiniz. Sol menüden işlem seçebilirsiniz.</p>
+</main>
+
+</div>
+
+<script src="historyTracker.js"></script>
+
+
+<script>
+
+ function toggleSidebar() {
+  const sidebar = document.getElementById("sidebar");
+  const toggleBtn = document.querySelector(".sidebar-toggle");
+
+  sidebar.classList.toggle("sidebar-closed");
+
+  
+  toggleBtn.classList.toggle("rotated");
+}
+
+
+  
+</script>
+
+</body>
+</html>

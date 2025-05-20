@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aktif Siparişler</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2>Adisyon Oluşturucu</h2>
+      </div>
+      <nav class="nav-links">
+        <ul>
+          <li><a href="menu.html">🍽️ Menü Oluştur</a></li>
+          <li><a href="bills.html">🧾 Adisyonlar</a></li>
+          <li><a href="active-orders.html">⌛ Aktif Siparişler</a></li>
+        </ul>
+      </nav>
+      <button class="back-button" onclick="goBack()">←</button>
+    </aside>
+
+    <main class="content">
+      <h1>Aktif Siparişler</h1>
+      <div id="activeOrdersContainer"></div>
+    </main>
+  </div>
+
+  <script src="historyTracker.js"></script>
+  <script src="active-orders.js"></script>
+  <script>
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      const toggleBtn = document.querySelector(".sidebar-toggle");
+      sidebar.classList.toggle("sidebar-closed");
+      toggleBtn.classList.toggle("rotated");
+    }
+  </script>
+</body>
+</html>

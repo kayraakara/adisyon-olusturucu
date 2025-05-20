@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ürün Seç</title>
+<link href="style.css" rel="stylesheet"/>
+<style>
+    .item-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .product-card {
+      background-color: #2c2c2c;
+      border-radius: 16px;
+      padding: 16px;
+      width: 220px;
+      color: white;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 0 8px rgba(0,0,0,0.5);
+    }
+
+    .product-card img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+
+    .product-card h4 {
+      margin: 8px 0;
+    }
+
+    .product-card button {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      margin-top: 8px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .product-card button:hover {
+      background-color: #45a049;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #4caf50;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transition: opacity 0.5s;
+      z-index: 1000;
+    }
+
+    .toast.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+<button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2>Adisyon Oluşturucu</h2>
+    </div>
+    <nav class="nav-links">
+      <ul>
+        <li><a href="menu.html">🍽️ Menü Oluştur</a></li>
+        <li><a href="bills.html">🧾 Adisyonlar</a></li>
+        <li><a href="active-orders.html">⌛ Aktif Siparişler</a></li>
+
+      </ul>
+    </nav>
+    <button class="back-button" onclick="goBack()">←</button>
+  </aside>
+
+<main class="content">
+<h1>Ürün Seç</h1>
+<div id="categoryGallery"></div>
+
+</main>
+<div class="toast" id="toast">Ürün eklendi ✅</div>
+
+
+</main>
+</div>
+<script src="historyTracker.js"></script>
+
+<script>
+
+  const menu = JSON.parse(localStorage.getItem("menu")) || [];
+  const bills = JSON.parse(localStorage.getItem("bills")) || [];
+  const activeBillIndex = parseInt(localStorage.getItem("activeBillIndex"));
+  
+
+  const grouped = {};
+  menu.forEach(item => {
+    if (!grouped[item.category]) grouped[item.category] = [];
+    grouped[item.category].push(item);
+  });
+
+  const container = document.getElementById("categoryGallery");
+
+  if (Object.keys(grouped).length === 0) {
+    container.innerHTML = "<p style='color: #999'>Görüntülenecek ürün bulunamadı. Menüye ürün ekleyin.</p>";
+  }
+
+  
+  
+  for (const [category, items] of Object.entries(grouped)) {
+    const section = document.createElement("section");
+    const title = document.createElement("h2");
+    title.textContent = category;
+    section.appendChild(title);
+
+    const grid = document.createElement("div");
+    grid.className = "item-grid";
+
+    items.forEach(item => {
+      const card = document.createElement("div");
+      card.className = "product-card";
+      card.style.width = "240px";
+      card.style.padding = "20px";
+
+      card.innerHTML = `
+        <img src="${item.image}" alt="${item.name}" />
+        <h4>${item.name}</h4>
+        <p>${item.price.toFixed(2)} TL</p>
+        <div style="display:flex; gap:10px; align-items:center; justify-content:center; margin: 8px 0;">
+          <button class="minus-btn" style="background-color:#f44336;">-</button>
+          <span class="qty-label">0</span>
+          <button class="plus-btn" style="background-color:#4caf50;">+</button>
+        </div>
+        <button class="confirm-btn">Ekle</button>
+      `;
+
+      let quantity = 0;
+      const qtyLabel = card.querySelector(".qty-label");
+      const plusBtn = card.querySelector(".plus-btn");
+      const minusBtn = card.querySelector(".minus-btn");
+      const confirmBtn = card.querySelector(".confirm-btn");
+
+      plusBtn.onclick = () => {
+        quantity++;
+        qtyLabel.textContent = quantity;
+      };
+
+      minusBtn.onclick = () => {
+        if (quantity > 0) quantity--;
+        qtyLabel.textContent = quantity;
+      };
+
+      confirmBtn.onclick = () => {
+        if (quantity === 0) return;
+
+        let bills = JSON.parse(localStorage.getItem("bills")) || [];
+        const activeBillIndex = parseInt(localStorage.getItem("activeBillIndex"));
+        if (isNaN(activeBillIndex) || !bills[activeBillIndex]) return;
+
+        const bill = bills[activeBillIndex];
+        const existing = bill.items.find(i => i.name === item.name && i.category === item.category);
+        if (existing) {
+          existing.quantity += quantity;
+        } else {
+          bill.items.push({ ...item, quantity });
+        }
+
+        localStorage.setItem("bills", JSON.stringify(bills));
+        showToast(`Seçili adisyona ${quantity} adet ${item.name} eklendi ✅`);
+        quantity = 0;
+        qtyLabel.textContent = "0";
+      };
+
+      grid.appendChild(card);
+    });
+
+    section.appendChild(grid);
+    container.appendChild(section);
+  }
+
+  function showToast(message) {
+    const toast = document.getElementById("toast");
+    toast.textContent = message;
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 2000);
+  }
+
+</script>
+
+<script>
+
+ function toggleSidebar() {
+  const sidebar = document.getElementById("sidebar");
+  const toggleBtn = document.querySelector(".sidebar-toggle");
+
+  sidebar.classList.toggle("sidebar-closed");
+
+  
+  toggleBtn.classList.toggle("rotated");
+}
+
+
+  
+</script>
+
+</body>
+</html>

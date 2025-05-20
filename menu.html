@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Menü Yönetimi</title>
+<link href="style.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"/>
+</head>
+<body>
+<button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+<div class="app">
+<aside class="sidebar" id="sidebar">
+<div class="sidebar-header">
+<h2>Adisyon Oluşturucu</h2>
+</div>
+<nav class="nav-links">
+<ul>
+<li><a href="menu.html">🍽️ Menü Oluştur</a></li>
+<li><a href="bills.html">🧾 Adisyonlar</a></li>
+<li><a href="active-orders.html">⌛ Aktif Siparişler</a></li>
+
+</ul>
+</nav>
+<button class="back-button" onclick="goBack()">←</button>
+</aside>
+<main class="content">
+<h1>Kategori Oluştur</h1>
+<input id="categoryName" placeholder="Kategori adı" type="text"/>
+<button id="createCategoryBtn">Kategori Ekle</button>
+<div id="categoriesContainer"></div>
+<div id="toastTrue" class="toastTrue"></div>
+<div id="toastFalse" class="toastFalse"></div>
+
+</main>
+<script src="menu.js"></script>
+</div>
+
+<script src="historyTracker.js"></script>
+
+<script>
+
+  function toggleSidebar() {
+  const sidebar = document.getElementById("sidebar");
+  const toggleBtn = document.querySelector(".sidebar-toggle");
+
+  sidebar.classList.toggle("sidebar-closed");
+
+  
+  toggleBtn.classList.toggle("rotated");
+}
+
+
+</script>
+
+</body>
+</html>
